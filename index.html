@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html data-ng-app="TestApp">
+	<head>
+		<meta charset="utf-8">
+		<title>UI test</title>
+		<link rel="stylesheet" href="style.css">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+	</head>
+	<body data-ng-controller="TestCtrl">
+		<nav>
+			<div class="header">Main</div>
+			<a class="menu_item" href="#">Overview</a>
+		</nav>
+		<article>
+			<div id="items" class="container">
+				<div class="header">Items</div>
+				<input class="inp_add_new" type="text" placeholder="Type name here..." data-ng-model="itemName" />
+				<button class="but_add_new" data-ng-click="addItem()">Add new</button>
+				<ul id="items_list">
+					<li data-ng-repeat="item in items" data-ng-click="activateItem($index)" class="{{activeClass($index)}}">{{item.name}}<span>{{item.comments.length}}</span><button data-ng-click="delItem($index)">Delete</button></li>
+				</ul>
+			</div>
+			<div id="comments" class="container">
+				<div class="header">Comments #{{activeIndex+1}}</div>
+				<ul id="comments_list">
+					<li data-ng-repeat="comment in activeComments"><span class="{{getClass($odd)}}"></span>{{comment.val}}</li>
+					<li><span class="back_grey" data-ng-click="addComment()"></span><textarea rows="4" data-ng-model="newComment"></textarea></li>
+				</ul>
+			</div>
+		</article>
+	</body>
+</html>
